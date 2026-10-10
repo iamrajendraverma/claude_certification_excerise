@@ -31,7 +31,7 @@ def coordinator(topic:str) ->ResearchReport:
         Research topic: {topic}
 
         Research plan:
-        {plan.model_dump_json(indent=2)}git 
+        {plan.model_dump_json(indent=2)}
 
         Subagent results:
         {[result.model_dump() for result in results]}

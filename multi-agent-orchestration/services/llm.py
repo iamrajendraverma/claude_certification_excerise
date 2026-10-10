@@ -62,5 +62,17 @@ def ask_claude_structured(
 
     # Validate and parse the JSON into the requested Pydantic model.
     return response_model.model_validate_json(
-        "\n".join(text_blocks)
+        _strip_code_fences("\n".join(text_blocks))
     )
+
+
+def _strip_code_fences(text: str) -> str:
+    """Remove a ```json ... ``` wrapper if Claude adds one."""
+    text = text.strip()
+    if text.startswith("```"):
+        # Drop the opening fence line (e.g. "```json").
+        text = text.split("\n", 1)[1] if "\n" in text else ""
+        text = text.rstrip()
+        if text.endswith("```"):
+            text = text[:-3]
+    return text.strip()
