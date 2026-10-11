@@ -88,6 +88,12 @@ class TaskResult(BaseModel):
 user-prompt ->
 Main -> coordinator -> research agent -> coordinator - Main -> result-to-user
 ```
+### Role and Responsibility 
+
+1. **Coordinator** decompose the task, delegate the task and collect the result and sent it back to the user. 
+2. **Models** pass the information and task to the sub-agents. maintain the connectivity 
+3. **Sub-Agents** perform the dedicated task. 
+
 
 **2.Implement task decomposition logic that breaks the topic into at least 5 distinct subtopics covering the full breadth of the subject**
 
